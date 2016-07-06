@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--引入资源文件-->
-    <properties resource="jdbc.properties"></properties>
+    <properties resource="jdbc.properties"/>
     <!-- 数据库驱动-->
     <classPathEntry  location="${driverClassPath}"/>
     <context id="DB2Tables"  targetRuntime="MyBatis3">
