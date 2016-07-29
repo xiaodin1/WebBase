@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 
 /**
  * Created by Administrator on 2016/7/8.
