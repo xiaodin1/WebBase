@@ -21,7 +21,7 @@
         <javaModelGenerator targetPackage="com.fibbery.framework.bean" targetProject="src/main/java">
             <!--<property name="enableSubPackages" value="true"/>-->
             <!--<property name="trimStrings" value="true"/>-->
-            <property name="rootClass" value="com.fibbery.framework.bean.BaseEntity"/>
+            <property name="rootClass" value="com.fibbery.framework.bean.base.BaseEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
         <sqlMapGenerator targetPackage="com.fibbery.framework.mapping" targetProject="src/main/java">
