@@ -258,7 +258,6 @@
             <artifactId>aspectjrt</artifactId>
             <version>1.6.9</version>
         </dependency>
-
         <!-- gwt rpc-->
         <dependency>
             <groupId>com.google.gwt</groupId>
