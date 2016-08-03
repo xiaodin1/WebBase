@@ -11,7 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by Administrator on 2016/8/1.
+ *
+ * Created by jiangnenghua on 2016/8/1.
  */
 public class ResourceTypeEnumHandler extends BaseTypeHandler<ResourceTypeEnum> {
 

@@ -10,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by jiangnenghua on 16/7/30.
+ *
+ * create by jiangnenghua
  */
 public class StatusEnumHandler extends BaseTypeHandler<StatusEnum> {
 
