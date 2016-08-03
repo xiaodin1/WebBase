@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ *
  * Created by jiangnenghua on 16/7/30.
  */
 public class BaseEntity implements Serializable{
