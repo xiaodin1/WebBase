@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+    <!-- 加载下rootclass -->
+    <classPathEntry location="D:\idea\WebBase\target\classes"></classPathEntry>
     <!-- 数据库驱动-->
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <commentGenerator>
@@ -21,10 +23,10 @@
         <javaModelGenerator targetPackage="com.fibbery.framework.bean" targetProject="src/main/java">
             <!--<property name="enableSubPackages" value="true"/>-->
             <!--<property name="trimStrings" value="true"/>-->
-            <property name="rootClass" value="com.fibbery.framework.bean.base.BaseEntity"/>
+            <property name="rootClass" value="com.fibbery.framework.bean.BaseEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="com.fibbery.framework.mapping" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="mybatis.framework" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
