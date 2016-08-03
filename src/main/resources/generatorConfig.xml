@@ -7,9 +7,9 @@
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <!-- plugins start-->
 
-        <!---  自定义的序列化 类文件 插件 --->
+        <!---  自定义的序列化 类文件 插件 -->
+        <plugin type="com.fibbery.framework.mybatis.plugins.SerializablePlugin"/>
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
         <!-- plugins end -->
 

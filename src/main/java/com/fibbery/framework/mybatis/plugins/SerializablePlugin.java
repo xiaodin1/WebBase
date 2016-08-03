@@ -9,6 +9,7 @@ import java.util.Properties;
 
 /**
  * mybatis生成类的序列化工具
+ * @see org.mybatis.generator.plugins.SerializablePlugin
  * Created by Administrator on 2016/8/1.
  */
 public class SerializablePlugin extends PluginAdapter {
@@ -92,7 +93,7 @@ public class SerializablePlugin extends PluginAdapter {
             field.setVisibility(JavaVisibility.PRIVATE);
             context.getCommentGenerator().addFieldComment(field, introspectedTable);
 
-            topLevelClass.addField(field);
+            topLevelClass.getFields().add(0,field);
         }
     }
 }
