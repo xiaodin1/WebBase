@@ -3,12 +3,10 @@ package com.fibbery.framework.mybatis.plugins;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.PropertyRegistry;
 
-import java.util.List;
 import java.util.Properties;
 
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
@@ -59,21 +57,23 @@ public class CommentPlugin implements CommentGenerator {
 
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+        StringBuffer annotation = new StringBuffer();
+        annotation.append("@Column(table = \""+introspectedTable.getFullyQualifiedTable()+"\",name = \""+introspectedColumn.getActualColumnName()+"\")");
+        field.addAnnotation(annotation.toString());
     }
 
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
-
     }
+
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-
+        topLevelClass.addImportedType(new FullyQualifiedJavaType("javax.persistence.Column"));
     }
 
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
-
     }
 
     @Override
