@@ -6,15 +6,16 @@
     <!-- 数据库驱动-->
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <!-- plugins start-->
-        <!--  自定义的序列化 类文件 插件 -->
-        <plugin type="com.fibbery.framework.mybatis.plugins.SerializablePlugin">
-        </plugin>
 
-        <!-- plugins end-->
-        <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
+        <!---  自定义的序列化 类文件 插件 -->
+        <plugin type="com.fibbery.framework.mybatis.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+
+        <!-- plugins end -->
+
+
+        <commentGenerator type="com.fibbery.framework.mybatis.plugins.CommentPlugin">
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/WebBase"
@@ -26,9 +27,9 @@
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
         <javaModelGenerator targetPackage="com.fibbery.framework.bean" targetProject="src/main/java">
-            <!--<property name="enableSubPackages" value="true"/>-->
-            <!--<property name="trimStrings" value="true"/>-->
-            <property name="rootClass" value="com.fibbery.framework.bean.BaseEntity"/>
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <!--<property name="rootClass" value="com.fibbery.framework.bean.BaseEntity"/>-->
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
         <sqlMapGenerator targetPackage="mybatis.framework" targetProject="src/main/resources">
