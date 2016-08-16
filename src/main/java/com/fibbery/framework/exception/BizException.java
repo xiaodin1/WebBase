@@ -1,32 +1,29 @@
 package com.fibbery.framework.exception;
 
-import com.fibbery.framework.vo.enums.ResultCodeEnum;
-
 /**
  * 通用业务异常类
  * Created by jiangnenghua on 2016/8/16.
  */
 public class BizException extends Exception {
 
-    private ResultCodeEnum code;
+    private int code;
 
-    public BizException(ResultCodeEnum code, String message, Throwable cause) {
+    public BizException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public BizException(ResultCodeEnum code, String message) {
+    public BizException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public BizException(ResultCodeEnum code, Throwable cause) {
+    public BizException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }
 
-    public BizException(ResultCodeEnum code) {
-        super(code.getMessage());
+    public BizException(int code) {
         this.code = code;
     }
 

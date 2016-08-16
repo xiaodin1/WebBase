@@ -1,8 +1,8 @@
 package com.fibbery.framework.aop;
 
+import com.fibbery.framework.constant.ResultConstant;
 import com.fibbery.framework.controller.ResultInfo;
 import com.fibbery.framework.exception.BizException;
-import com.fibbery.framework.vo.enums.ResultCodeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,7 +37,7 @@ public class DefaultExceptionHandler{
 //            resultInfo.setErrorStack(se.getErrorStackTrace());
         }
         else{
-            resultInfo.setCode(ResultCodeEnum.ERROR);
+            resultInfo.setCode(ResultConstant.ERROR);
             resultInfo.setErrorStack(getStackMsg(e));
         }
     }

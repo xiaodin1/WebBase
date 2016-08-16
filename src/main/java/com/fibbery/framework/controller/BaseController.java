@@ -1,7 +1,7 @@
 package com.fibbery.framework.controller;
 
+import com.fibbery.framework.constant.ResultConstant;
 import com.fibbery.framework.utils.StringUtils;
-import com.fibbery.framework.vo.enums.ResultCodeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,7 +49,7 @@ public class BaseController {
     public static ResultInfo success(Object obj){
         ResultInfo info = new ResultInfo();
         info.setResult(obj);
-        info.setCode(ResultCodeEnum.SUCCESS);
+        info.setCode(ResultConstant.SUCCESS);
         return info;
     }
 }

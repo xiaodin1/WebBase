@@ -1,6 +1,5 @@
 package com.fibbery.framework.controller;
 
-import com.fibbery.framework.vo.enums.ResultCodeEnum;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -15,17 +14,17 @@ public class ResultInfo implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    private ResultCodeEnum code;
+    private int code;
 
     private Object result;
 
     private String errorStack;
 
-    public ResultCodeEnum getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(ResultCodeEnum code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

@@ -9,7 +9,7 @@
     </settings>
     <!-- mybatis分页插件 -->
     <plugins>
-        <plugin interceptor="com.fuzegame.service.interceptor.PageInterceptor">
+        <plugin interceptor="com.fibbery.framework.mybatis.interceptor.PageInterceptor">
             <property name="databaseType" value="mysql"/>
         </plugin>
     </plugins>

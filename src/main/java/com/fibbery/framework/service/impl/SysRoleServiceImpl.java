@@ -1,12 +1,12 @@
 package com.fibbery.framework.service.impl;
 
 import com.fibbery.framework.bean.SysRole;
+import com.fibbery.framework.constant.ResultConstant;
 import com.fibbery.framework.exception.BizException;
 import com.fibbery.framework.mapper.SysRoleMapper;
 import com.fibbery.framework.mybatis.ui.Page;
 import com.fibbery.framework.service.SysRoleService;
 import com.fibbery.framework.utils.StringUtils;
-import com.fibbery.framework.vo.enums.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public void add(SysRole record) throws BizException {
-        if(!isValid(record)) throw new BizException(ResultCodeEnum.FAIL,"存在相同的名称");
+        if(!isValid(record)) throw new BizException(ResultConstant.FAIL,"存在相同的名称");
         roleMapper.insertSelective(record);
     }
 
@@ -34,7 +34,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public void modify(SysRole record) throws BizException {
-        if(!isValid(record)) throw new BizException(ResultCodeEnum.FAIL,"存在相同的名称");
+        if(!isValid(record)) throw new BizException(ResultConstant.FAIL,"存在相同的名称");
         roleMapper.updateByPrimaryKeySelective(record);
     }
 

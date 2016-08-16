@@ -11,7 +11,7 @@
 </head>
 <body class="gray-bg">
 
-<div class="wrapper wrapper-content animated fadeIn" ng-app="myapp" ng-init="quantity=1;price=5;names=['Jane','KangKang','Jack']">
+<div class="wrapper wrapper-content animated fadeIn" ng-app="myapp" ng-controller="rolectrl" ng-init="quantity=1;price=5;names=['Jane','KangKang','Jack']">
     <p>名字一定是 : <input type="text" ng-model="name"></p>
     <h1>Hello {{name}}</h1>
     <p>
@@ -34,6 +34,12 @@
     app.directive("mine",function(){
         return { template : '<h1>自定义模块<h1>' };
     });
+    app.controller("rolectrl",function($scope,$http,$location,$timeout,$interval){
+        $scope.url = $location.absUrl();
+        $http({method:"POST",url:"role"}).success(function(result){
+            $scope.rows = result.rows;
+        });
+    })
 </script>
 </body>
 </html>
