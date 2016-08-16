@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 通用controller
+ * PATH 获取列表
+ * GET 获取单个对象
+ * PUT 更新操作
+ * POST 新增操作
+ * DELETE 删除操作
  * Created by nenghua_jiang  on 2016/7/8.
  */
 public class BaseController {
