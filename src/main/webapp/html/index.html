@@ -7,14 +7,33 @@
     <link href="css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=3.2.0" rel="stylesheet">
-    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="js/angular.min.js"></script>
 </head>
-<body>
+<body class="gray-bg">
 
-<div ng-app="">
-    <p>名字是 : <input type="text" ng-model="name"></p>
+<div class="wrapper wrapper-content animated fadeIn" ng-app="myapp" ng-init="quantity=1;price=5;names=['Jane','KangKang','Jack']">
+    <p>名字一定是 : <input type="text" ng-model="name"></p>
     <h1>Hello {{name}}</h1>
+    <p>
+      quantity:{{ quantity }}
+    </p>
+    <p>
+      price:{{ price }}
+    </p>
+    <p>下面循环</p>
+    <ul>
+        <li ng-repeat="name in names">
+            {{name }}
+        </li>
+    </ul>
+    <mine></mine>
 </div>
 
+<script>
+    var app = angular.module("myapp",[]);
+    app.directive("mine",function(){
+        return { template : '<h1>自定义模块<h1>' };
+    })
+</script>
 </body>
 </html>
