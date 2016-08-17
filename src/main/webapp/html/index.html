@@ -27,6 +27,25 @@
         </li>
     </ul>
     <mine></mine>
+
+    <div class="input-append">
+        <input style="width:358px; margin-left: 100px;" type="text" ng-model="name" required min="1" />
+        <button class="btn btn-primary" ng-disabled="!name" ng-click="add(name)">Add User</button>
+    </div>
+    <table class="table table-bordered table-striped" style="width:450px; margin-left: 100px;" ng-show="roles.length > 0">
+        <thead>
+        <tr>
+            <th style="text-align: center; width: 25px;">Action</th>
+            <th style="text-align: center;">User Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="role in roles">
+            <td  style="width:70px;text-align:center;"><button class="btn btn-mini btn-danger" ng-click="remove(role)">Remove</button></td>
+            <td>{{user}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <script>
@@ -36,9 +55,14 @@
     });
     app.controller("rolectrl",function($scope,$http,$location,$timeout,$interval){
         $scope.url = $location.absUrl();
-        $http({method:"GET",url:"/role/list"}).success(function(result){
-            $scope.rows = result.rows;
+        $http({method:"PATCH",url:"/role"}).success(function(result){
+            $scope.roles = result.rows;
         });
+        $scope.add = function(name){
+            $http.post("/role",{"name":name}).success(function(result){
+
+            });
+        };
     })
 </script>
 </body>

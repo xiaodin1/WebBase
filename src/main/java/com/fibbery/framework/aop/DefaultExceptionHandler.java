@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 @ControllerAdvice
 public class DefaultExceptionHandler{
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -32,14 +31,13 @@ public class DefaultExceptionHandler{
         }
         this.log.error(e.getMessage(),e);
         if(e instanceof BizException){
-            BizException se = (BizException)e;
-//            resultInfo.setCode(se.getResultCode());
-//            resultInfo.setErrorStack(se.getErrorStackTrace());
+            resultInfo.setCode(ResultConstant.FAIL);
         }
         else{
             resultInfo.setCode(ResultConstant.ERROR);
-            resultInfo.setErrorStack(getStackMsg(e));
         }
+        resultInfo.setMsg(e.getMessage());
+        resultInfo.setErrorStack(getStackMsg(e));
     }
 
     /**获取异常的栈信息*/
