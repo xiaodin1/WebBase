@@ -28,7 +28,7 @@ public class SysRoleController extends BaseController {
         return roleService.listAll();
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public ResultInfo get(@PathVariable("id")String id) throws BizException{
        return success(roleService.get(id));
