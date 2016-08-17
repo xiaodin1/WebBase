@@ -56,7 +56,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public boolean isValid(SysRole record) throws BizException {
-        if(StringUtils.isEmpty(record.getName())) return false;
+        if(StringUtils.isEmpty(record.getName())) throw new BizException(ResultConstant.FAIL,"名称不能为空!");
         return roleMapper.isValid(record) > 0;
     }
 
