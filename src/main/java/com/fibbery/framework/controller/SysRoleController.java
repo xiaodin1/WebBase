@@ -31,13 +31,13 @@ public class SysRoleController extends BaseController {
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     @ResponseBody
     public ResultInfo get(@PathVariable("id")String id) throws BizException{
-       return this.success(roleService.get(id));
+       return success(roleService.get(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public ResultInfo delete(@PathVariable("id")String id) throws BizException {
         roleService.delete(id);
-        return this.success(null);
+        return success(null);
     }
 }

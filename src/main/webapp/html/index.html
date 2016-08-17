@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>主页</title>
-    <link href="css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-    <link href="css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min.css?v=3.2.0" rel="stylesheet">
-    <script src="js/angular.min.js"></script>
+    <link href="/resources/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="/resources/css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
+    <link href="/resources/css/animate.min.css" rel="stylesheet">
+    <link href="/resources/css/style.min.css?v=3.2.0" rel="stylesheet">
+    <script src="/resources/js/angular.min.js"></script>
 </head>
 <body class="gray-bg">
 
@@ -36,7 +36,7 @@
     });
     app.controller("rolectrl",function($scope,$http,$location,$timeout,$interval){
         $scope.url = $location.absUrl();
-        $http({method:"POST",url:"role"}).success(function(result){
+        $http({method:"PATCH",url:"role"}).success(function(result){
             $scope.rows = result.rows;
         });
     })
