@@ -5,17 +5,13 @@ import com.fibbery.framework.exception.BizException;
 import com.fibbery.framework.mybatis.ui.Page;
 import com.fibbery.framework.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 角色控制类 RESTful 实例
  * Created by jiangnenghua on 2016/8/16.
  */
-@Controller
+@RestController
 @RequestMapping("/role")
 public class SysRoleController extends BaseController {
 

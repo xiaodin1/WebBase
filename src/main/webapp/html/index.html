@@ -36,7 +36,7 @@
     });
     app.controller("rolectrl",function($scope,$http,$location,$timeout,$interval){
         $scope.url = $location.absUrl();
-        $http({method:"PATCH",url:"role"}).success(function(result){
+        $http({method:"GET",url:"/role/list"}).success(function(result){
             $scope.rows = result.rows;
         });
     })
