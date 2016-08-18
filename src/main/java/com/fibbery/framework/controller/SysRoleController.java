@@ -6,10 +6,7 @@ import com.fibbery.framework.mybatis.ui.Page;
 import com.fibbery.framework.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 角色控制类 RESTful 实例
@@ -25,7 +22,9 @@ public class SysRoleController extends BaseController {
     @RequestMapping(method = RequestMethod.PATCH)
     @ResponseBody
     public Page<SysRole> list() throws BizException {
-        return roleService.listAll();
+        Page<SysRole> page = new Page<SysRole>();
+        roleService.listAll(page);
+        return page;
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -43,7 +42,7 @@ public class SysRoleController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public ResultInfo add(SysRole role) throws BizException {
+    public ResultInfo add(@RequestBody SysRole role) throws BizException {
         roleService.add(role);
         return success(null);
     }

@@ -128,7 +128,7 @@
   </update>
 
     <!-- 获取所有记录 -->
-    <select id="listAll" resultType="com.fibbery.framework.mybatis.ui.Page">
+    <select id="listAll" parameterType="com.fibbery.framework.mybatis.ui.Page" resultMap="BaseResultMap">
         select * from sys_role
     </select>
 
@@ -137,9 +137,8 @@
         select count(1) from sys_role
         where name = #{name}
         <if test="id != null ">
-            <![CDATA[ and id <> #{id} ]]>
+            <![CDATA[ and id <> #{id}]]>
         </if>
-        group by name
     </select>
 
     <!--清空该表记录 -->

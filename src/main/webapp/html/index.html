@@ -59,9 +59,7 @@
             $scope.roles = result.rows;
         });
         $scope.add = function(name){
-            $http.post("/role",{"name":name}).success(function(result){
-
-            });
+            $http.post("/role",{"name":name}).success(function(result){});
         };
     })
 </script>

@@ -193,8 +193,8 @@ public class PageInterceptor implements Interceptor {
      * @return
      */
     private String getCountSql(String sql) {
-
-        return "select count(1) from (" + sql + ")";
+        //mysql需要别名
+        return "select count(1) from (" + sql + ") as main";
     }
 
     /**

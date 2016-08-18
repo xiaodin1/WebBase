@@ -3,6 +3,8 @@ package com.fibbery.framework.mapper;
 import com.fibbery.framework.bean.SysRole;
 import com.fibbery.framework.mybatis.ui.Page;
 
+import java.util.List;
+
 public interface SysRoleMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -16,7 +18,7 @@ public interface SysRoleMapper {
 
     int updateByPrimaryKey(SysRole record);
 
-    Page<SysRole> listAll();
+    List<SysRole> listAll(Page<SysRole> page);
 
     int isValid(SysRole record);
 

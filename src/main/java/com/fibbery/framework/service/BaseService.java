@@ -48,7 +48,7 @@ public interface BaseService<T>{
      * 获取所有记录
      * @return
      */
-    Page<T> listAll() throws BizException;
+    void listAll(Page<T> page) throws BizException;
 
     /**
      * 验证记录的新增或者更新是否合法

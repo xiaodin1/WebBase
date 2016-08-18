@@ -10,6 +10,8 @@ import com.fibbery.framework.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * Created by jiangnenghua on 2016/8/16.
@@ -49,8 +51,9 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public Page<SysRole> listAll() {
-        return roleMapper.listAll();
+    public void listAll(Page<SysRole> page) {
+        List<SysRole> list = roleMapper.listAll(page);
+        page.setRows(list);
     }
 
 
