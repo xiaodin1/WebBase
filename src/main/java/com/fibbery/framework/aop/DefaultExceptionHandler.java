@@ -3,6 +3,7 @@ package com.fibbery.framework.aop;
 import com.fibbery.framework.constant.ResultConstant;
 import com.fibbery.framework.controller.ResultInfo;
 import com.fibbery.framework.exception.BizException;
+import com.fibbery.framework.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -36,7 +37,7 @@ public class DefaultExceptionHandler{
         else{
             resultInfo.setCode(ResultConstant.ERROR);
         }
-        resultInfo.setMsg(e.getMessage());
+        resultInfo.setMsg(StringUtils.isEmpty(e.getMessage())? "后台系统异常,请联系管理员!":e.getMessage());
         resultInfo.setErrorStack(getStackMsg(e));
     }
 

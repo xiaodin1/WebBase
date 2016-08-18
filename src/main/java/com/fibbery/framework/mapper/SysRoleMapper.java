@@ -20,7 +20,7 @@ public interface SysRoleMapper {
 
     List<SysRole> listAll(Page<SysRole> page);
 
-    int isValid(SysRole record);
+    Long isValid(SysRole record);
 
     void deleteAll();
 }
