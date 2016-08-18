@@ -46,6 +46,8 @@
         </tr>
         </tbody>
     </table>
+    <select ng-options="role.name for role in roles" ng-model="sel_role"></select>
+    <p>选择的角色ID: {{ sel_role.id }}</p>
 </div>
 
 <script>
