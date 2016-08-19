@@ -43,6 +43,7 @@ public class PropertiesCache {
 
     private static final Logger logger = LoggerFactory.getLogger(PropertiesCache.class);
 
+    /* 全小写字母作为key*/
     private static PropertiesCache cache;
 
     private static final String PATH = "config.xml";
@@ -109,7 +110,7 @@ public class PropertiesCache {
             for (Element module : modules) {
                 List<Element> properties = module.elements(ConfigNode.PROPERTY);
                 for (Element property : properties) {
-                    String key = SEPERATOR.join(module.attributeValue(ConfigNode.ATTR_NAME), property.attributeValue(ConfigNode.ATTR_NAME));
+                    String key = SEPERATOR.join(module.attributeValue(ConfigNode.ATTR_NAME), property.attributeValue(ConfigNode.ATTR_NAME)).toLowerCase();
                     propertiesCache.put( key, property.getStringValue());
                 }
             }
@@ -128,8 +129,8 @@ public class PropertiesCache {
     }
 
     public String getProperty(String module, String property) {
-        String key = SEPERATOR.join(module, property);
-        if (!propertiesCache.contains(key)) {
+        String key = SEPERATOR.join(module, property).toLowerCase();
+        if (!propertiesCache.containsKey(key)) {
             parseXML(module);
         }
         return StringUtils.cnull(propertiesCache.get(key));

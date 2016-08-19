@@ -3,6 +3,6 @@
     <!-- 12306查询系统需要的Url -->
     <Module name="tiket">
         <Property name="tiketQueryUrl">https://kyfw.12306.cn/otn/leftTicket/queryT</Property>
-        <Property name="stationFileUrl">https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8962</Property>
+        <Property name="stationFileUrl">https://kyfw.12306.cn/otn/resources/js/framework/station_name.js</Property>
     </Module>
 </Project>
