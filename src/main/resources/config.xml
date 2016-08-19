@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
     <!-- 12306查询系统需要的Url -->
-    <Module id="tiket">
-        <Property id="tiketQueryUrl">https://kyfw.12306.cn/otn/leftTicket/queryT</Property>
-        <Property id="stationFileUrl">https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8962</Property>
+    <Module name="tiket">
+        <Property name="tiketQueryUrl">https://kyfw.12306.cn/otn/leftTicket/queryT</Property>
+        <Property name="stationFileUrl">https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8962</Property>
     </Module>
 </Project>

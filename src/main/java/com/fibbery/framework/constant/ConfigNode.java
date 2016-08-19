@@ -9,5 +9,7 @@ public class ConfigNode {
 
     public static final String MODULE = "Module";
 
+    public static final String ATTR_NAME = "name";
+
     public static final String PROPERTY = "Property";
 }
