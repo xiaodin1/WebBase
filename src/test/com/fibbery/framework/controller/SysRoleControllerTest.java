@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.function.Predicate;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,7 +61,11 @@ public class SysRoleControllerTest {
 
     @Test
     public void testGet() throws Exception {
-
+        Predicate<String> str = s -> s.length() > 0;
+        Thread thread = new Thread(() -> {
+            System.out.println(str.test("123213123213123123"));
+        });
+        thread.start();
     }
 
     @Test
