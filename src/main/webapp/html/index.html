@@ -114,7 +114,7 @@
         };
         $scope.del = function (id) {
             $http.delete("/role/" + id).success(function (result) {
-                $scope.list()
+                $scope.list();
             });
         };
         $scope.delAll = function () {
