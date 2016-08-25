@@ -8,6 +8,7 @@
     <link href="/resources/css/animate.min.css" rel="stylesheet">
     <link href="/resources/css/style.min.css?v=3.2.0" rel="stylesheet">
     <script src="/resources/js/angular.min.js"></script>
+    <script src="/resources/js/angular-route.min.js"></script>
 </head>
 <body class="gray-bg">
 
@@ -57,10 +58,18 @@
     <select ng-options="role.name for role in roles" ng-model="sel_role"></select>
 
     <p>选择的角色ID: {{ sel_role.id }}</p>
+    <p>路由的使用</p>
+    <div>
+        <a href="#/">首页</a>
+        <a href="#/computer">电脑</a>
+        <a href="#/clothes">衣服</a>
+        <a href="#/electronic">店子器材</a>
+    </div>
+    <div ng-view=""></div>
 </div>
 
 <script>
-    var app = angular.module("myapp", []);
+    var app = angular.module("myapp", ['ngRoute']);
     app.value("defaultInputValue", 5);
     app.directive("mine", function () {
         return {template: '<h1>自定义模块<h1>'};
@@ -83,19 +92,24 @@
     });
 
     //使用 provider创建service定义一个方法用于计算两数的乘积
-    app.config(function ($provide) {
-        $provide.provider("MathService", function () {
-            this.$get = function () {
-                var factory = {};
-                factory.multiply = function (a, b) {
-                    return a * b
-                };
-                return factory;
-            };
-        });
+    app.config(function ($routeProvider) {
+//        $routeProvider.provider("MathService", function () {
+//            this.$get = function () {
+//                var factory = {};
+//                factory.multiply = function (a, b) {
+//                    return a * b
+//                };
+//                return factory;
+//            };
+//        });
+        $routeProvider.when('/', {template: '这是首页页面'})
+                .when('/computer', {template: '这是电脑页面'})
+                .when('/clothes', {template: '这是衣服页面'})
+                .when('/electronic', {template: '这是电子器材页面'})
+                .otherwise({redirectTo: '/'});
     });
 
-    app.controller("rolectrl", function ($scope, $http, $location, CalcService) {
+    app.controller("rolectrl", function ($scope, $http, $location, CalcService, defaultInputValue) {
         $scope.number = defaultInputValue;
         $scope.url = $location.absUrl();
         $scope.result = CalcService.square($scope.number);
