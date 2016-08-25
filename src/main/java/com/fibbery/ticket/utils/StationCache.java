@@ -1,4 +1,4 @@
-package com.fibbery.tiket.utils;
+package com.fibbery.ticket.utils;
 
 import com.fibbery.framework.utils.JdbcUtils;
 import com.fibbery.framework.utils.PropertiesCache;
@@ -50,6 +50,7 @@ public class StationCache {
 
         writer.flush();
         writer.close();
+        logger.info("file has downloaded!");
 
     }
 
@@ -85,7 +86,7 @@ public class StationCache {
         }
 
         ps.executeBatch();
-        System.out.println("ending");
+        logger.info("station data has inserted into the DB!");
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fibbery.ticket.mapper.StationMapper" >
+  <resultMap id="BaseResultMap" type="com.fibbery.ticket.bean.Station" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="BIGINT" />
+    <result column="shuangpin" property="shuangpin" jdbcType="VARCHAR" />
+    <result column="quanpin" property="quanpin" jdbcType="VARCHAR" />
+    <result column="jianpin" property="jianpin" jdbcType="VARCHAR" />
+    <result column="wubi" property="wubi" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE" />
+    <result column="last_update_user" property="lastUpdateUser" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fibbery.ticket.bean.Station" extends="BaseResultMap" >
+    <result column="fileMd5" property="filemd5" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, number, shuangpin, quanpin, jianpin, wubi, name, create_date, create_user, last_update_date, 
+    last_update_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    fileMd5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_ticket_station
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ticket_station
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fibbery.ticket.bean.Station" >
+    insert into t_ticket_station (id, number, shuangpin, 
+      quanpin, jianpin, wubi, 
+      name, create_date, create_user, 
+      last_update_date, last_update_user, fileMd5
+      )
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, #{shuangpin,jdbcType=VARCHAR}, 
+      #{quanpin,jdbcType=VARCHAR}, #{jianpin,jdbcType=VARCHAR}, #{wubi,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{createUser,jdbcType=BIGINT}, 
+      #{lastUpdateDate,jdbcType=DATE}, #{lastUpdateUser,jdbcType=BIGINT}, #{filemd5,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fibbery.ticket.bean.Station" >
+    insert into t_ticket_station
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="shuangpin != null" >
+        shuangpin,
+      </if>
+      <if test="quanpin != null" >
+        quanpin,
+      </if>
+      <if test="jianpin != null" >
+        jianpin,
+      </if>
+      <if test="wubi != null" >
+        wubi,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null" >
+        last_update_user,
+      </if>
+      <if test="filemd5 != null" >
+        fileMd5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=BIGINT},
+      </if>
+      <if test="shuangpin != null" >
+        #{shuangpin,jdbcType=VARCHAR},
+      </if>
+      <if test="quanpin != null" >
+        #{quanpin,jdbcType=VARCHAR},
+      </if>
+      <if test="jianpin != null" >
+        #{jianpin,jdbcType=VARCHAR},
+      </if>
+      <if test="wubi != null" >
+        #{wubi,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="lastUpdateUser != null" >
+        #{lastUpdateUser,jdbcType=BIGINT},
+      </if>
+      <if test="filemd5 != null" >
+        #{filemd5,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fibbery.ticket.bean.Station" >
+    update t_ticket_station
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=BIGINT},
+      </if>
+      <if test="shuangpin != null" >
+        shuangpin = #{shuangpin,jdbcType=VARCHAR},
+      </if>
+      <if test="quanpin != null" >
+        quanpin = #{quanpin,jdbcType=VARCHAR},
+      </if>
+      <if test="jianpin != null" >
+        jianpin = #{jianpin,jdbcType=VARCHAR},
+      </if>
+      <if test="wubi != null" >
+        wubi = #{wubi,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="lastUpdateUser != null" >
+        last_update_user = #{lastUpdateUser,jdbcType=BIGINT},
+      </if>
+      <if test="filemd5 != null" >
+        fileMd5 = #{filemd5,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fibbery.ticket.bean.Station" >
+    update t_ticket_station
+    set number = #{number,jdbcType=BIGINT},
+      shuangpin = #{shuangpin,jdbcType=VARCHAR},
+      quanpin = #{quanpin,jdbcType=VARCHAR},
+      jianpin = #{jianpin,jdbcType=VARCHAR},
+      wubi = #{wubi,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      last_update_user = #{lastUpdateUser,jdbcType=BIGINT},
+      fileMd5 = #{filemd5,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fibbery.ticket.bean.Station" >
+    update t_ticket_station
+    set number = #{number,jdbcType=BIGINT},
+      shuangpin = #{shuangpin,jdbcType=VARCHAR},
+      quanpin = #{quanpin,jdbcType=VARCHAR},
+      jianpin = #{jianpin,jdbcType=VARCHAR},
+      wubi = #{wubi,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      last_update_user = #{lastUpdateUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 获取所有记录 -->
+  <select id="listAll" parameterType="com.fibbery.framework.mybatis.ui.Page" resultMap="BaseResultMap">
+    select * from t_ticket_station
+  </select>
+</mapper>

@@ -17,7 +17,7 @@ import java.util.List;
  * Created by jiangnenghua on 2016/8/16.
  */
 
-@Service("sysRoleService")
+@Service("SysRoleService")
 public class SysRoleServiceImpl implements SysRoleService {
 
     @Autowired
