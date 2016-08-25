@@ -12,31 +12,10 @@
 </head>
 <body class="gray-bg">
 
-<div class="wrapper wrapper-content animated fadeIn" ng-app="myapp" ng-controller="rolectrl"
-     ng-init="quantity=1;price=5;names=['Jane','KangKang','Jack']">
-    <p>名字一定是 : <input type="text" ng-model="name"></p>
-
-    <h1>Hello {{name}}</h1>
-
-    <p>
-        quantity:{{ quantity }}
-    </p>
-
-    <p>
-        price:{{ price }}
-    </p>
-
-    <p>下面循环</p>
-    <ul>
-        <li ng-repeat="name in names">
-            {{name }}
-        </li>
-    </ul>
-    <mine></mine>
+<div class="wrapper wrapper-content animated fadeIn" ng-app="ticket" ng-controller="ticketController">
 
     <div class="input-append">
         <input style="width:358px; margin-left: 100px;" type="text" ng-model="name" required min="1"/>
-        <button class="btn btn-primary" ng-disabled="!name" ng-click="add(name)">Add User</button>
     </div>
     <table class="table table-bordered table-striped" style="width:450px; margin-left: 100px;"
            ng-show="roles.length > 0">
@@ -55,87 +34,8 @@
         </tr>
         </tbody>
     </table>
-    <select ng-options="role.name for role in roles" ng-model="sel_role"></select>
 
-    <p>选择的角色ID: {{ sel_role.id }}</p>
-    <p>路由的使用</p>
-    <div>
-        <a href="#/">首页</a>
-        <a href="#/computer">电脑</a>
-        <a href="#/clothes">衣服</a>
-        <a href="#/electronic">店子器材</a>
-    </div>
-    <div ng-view=""></div>
 </div>
 
-<script>
-    var app = angular.module("myapp", ['ngRoute']);
-    app.value("defaultInputValue", 5);
-    app.directive("mine", function () {
-        return {template: '<h1>自定义模块<h1>'};
-    });
-
-    //创建一个factory
-    app.factory("MathService", function () {
-        var factory = {};
-        factory.multiply = function (a, b) {
-            return a * b;
-        };
-        return factory;
-    });
-
-    //在CalcService中注入 factory的 MathService
-    app.service("CalcService", function (MathService) {
-        this.square = function (a) {
-            return MathService.multiply(a, a);
-        };
-    });
-
-    //使用 provider创建service定义一个方法用于计算两数的乘积
-    app.config(function ($routeProvider) {
-//        $routeProvider.provider("MathService", function () {
-//            this.$get = function () {
-//                var factory = {};
-//                factory.multiply = function (a, b) {
-//                    return a * b
-//                };
-//                return factory;
-//            };
-//        });
-        $routeProvider.when('/', {template: '这是首页页面'})
-                .when('/computer', {template: '这是电脑页面'})
-                .when('/clothes', {template: '这是衣服页面'})
-                .when('/electronic', {template: '这是电子器材页面'})
-                .otherwise({redirectTo: '/'});
-    });
-
-    app.controller("rolectrl", function ($scope, $http, $location, CalcService, defaultInputValue) {
-        $scope.number = defaultInputValue;
-        $scope.url = $location.absUrl();
-        $scope.result = CalcService.square($scope.number);
-        $scope.square = function () {
-            $scope.result = CalcService.square($scope.result);
-        };
-        $scope.list = function () {
-            $http({method: "PATCH", url: "/role"}).success(function (result) {
-                $scope.roles = result.rows;
-            });
-        };
-        $scope.add = function (name) {
-            $http.post("/role", {"name": name}).success(function (result) {
-                $scope.list();
-            });
-        };
-        $scope.del = function (id) {
-            $http.delete("/role/" + id).success(function (result) {
-                $scope.list();
-            });
-        };
-        $scope.delAll = function () {
-        };
-
-        $scope.list();
-    })
-</script>
 </body>
 </html>

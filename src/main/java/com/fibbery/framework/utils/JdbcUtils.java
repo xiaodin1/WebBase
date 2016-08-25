@@ -26,7 +26,7 @@ public class JdbcUtils {
 
     static{
         Properties properties = new Properties();
-        InputStream inputStream = JdbcUtils.class.getClassLoader().getResourceAsStream("service_jdbc.properties");
+        InputStream inputStream = JdbcUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
         try {
             properties.load(inputStream);
             String driverClass = properties.getProperty("driver");
