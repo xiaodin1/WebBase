@@ -1,18 +1,17 @@
 package com.fibbery.framework.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.misc.Unsafe;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashSet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import sun.misc.*;
-
 /**
- * unsafeºÚÄ§·¨
+ * unsafeé»‘é­”æ³•
  * 
  * @author nenghua_jiang
  *
@@ -39,7 +38,7 @@ public class UnsafeUtils {
 	}
 	
 	/**
-	 * ·µ»ØŒ¦Ïó×ÓÃµÄƒÈ´æ´óĞ¡
+	 * è¿”å›å°è±¡ä½”ç”¨çš„å…§å­˜å¤§å°
 	 * @param obj
 	 * @return
 	 */
@@ -66,7 +65,7 @@ public class UnsafeUtils {
 	}
 	
 	/**
-	 * ÎªÁËÕıÈ·µÄÄÚ´æµØÖ·Ê¹ÓÃ,½«ÓĞ·ûºÅµÄintÇ¿ÖÆ×ª»»³ÉÎŞ·ûºÅµÄlong
+	 * ä¸ºäº†æ­£ç¡®çš„å†…å­˜åœ°å€ä½¿ç”¨,å°†æœ‰ç¬¦å·çš„intå¼ºåˆ¶è½¬æ¢æˆæ— ç¬¦å·çš„long
 	 * @param value
 	 * @return
 	 */
@@ -76,37 +75,37 @@ public class UnsafeUtils {
 	}
 	
 	/**
-	 * ·µ»ØŒ¦ÏóËùÔÚµÄƒÈ´æµØÖ·
+	 * è¿”å›å°è±¡æ‰€åœ¨çš„å…§å­˜åœ°å€
 	 * @param obj
 	 * @return
 	 */
 	public static long toAddress(Object obj){
 		Object[] arry = new Object[]{obj};
-		//»ñÈ¡µÚÒ»¸öÔªËØµÄÆ«ÒÆµØÖ·
+		//è·å–ç¬¬ä¸€ä¸ªå…ƒç´ çš„åç§»åœ°å€
 		long baseOffset = getUnsafe().arrayBaseOffset(Object[].class);
 		return normalize(getUnsafe().getInt(arry, baseOffset));	
 	}
 	
 	/**
-	 * ´ÓÄÚ´æµØÖ·»ñÈ¡¶ÔÏó
+	 * ä»å†…å­˜åœ°å€è·å–å¯¹è±¡
 	 * @param address
 	 */
 	public static Object fromAddress(long address){
 		Object[] array = new Object[]{null};
-		//»ñÈ¡µÚÒ»¸öÔªËØµÄÆ«ÒÆµØÖ·
+		//è·å–ç¬¬ä¸€ä¸ªå…ƒç´ çš„åç§»åœ°å€
 		long baseOffset = getUnsafe().arrayBaseOffset(Object[].class);
 		getUnsafe().putLong(array, baseOffset, address);
 		return array[0];
 	}
 	
 	/**
-	 * Ç³¸´ÖÆ
+	 * æµ…å¤åˆ¶
 	 * @param obj
 	 * @return
 	 */
 	public static Object shallowCopy(Object obj){
 		long size = sizeOf(obj);
-		//¿ª±ÙÒ»¸ösize´óĞ¡µÄÄÚ´æµØÖ·,²¢ÇÒ·µ»ØÎ»ÖÃ
+		//å¼€è¾Ÿä¸€ä¸ªsizeå¤§å°çš„å†…å­˜åœ°å€,å¹¶ä¸”è¿”å›ä½ç½®
 		long address = getUnsafe().allocateMemory(size);
 		long start = toAddress(obj);
 		getUnsafe().copyMemory(start,address,size);
@@ -114,7 +113,7 @@ public class UnsafeUtils {
 	}
 	
 	/**
-	 * Òş²ØStringÀàÃÜÂë,ÒòÎªÈç¹û½«ÓÃ»§ÃÜÂë¼ìË÷³É×Ö·û´®£¬Õâ¿ÉÒÔÏñÒ»¸ö¶ÔÏóÒ»ÑùÔÚÄÚ´æÖĞ±£´æ£¬¶øÉ¾³ı¸Ã¶ÔÏóÖ»ĞèÖ´ĞĞ½â³ıÒıÓÃµÄ²Ù×÷¡£µ«ÊÇ£¬Õâ¸ö¶ÔÏóÈÔÈ»ÔÚÄÚ´æÖĞ£¬ÓÉGC¾ö¶¨µÄÊ±¼äÀ´Ö´ĞĞÇå³ı¡£
+	 * éšè—Stringç±»å¯†ç ,å› ä¸ºå¦‚æœå°†ç”¨æˆ·å¯†ç æ£€ç´¢æˆå­—ç¬¦ä¸²ï¼Œè¿™å¯ä»¥åƒä¸€ä¸ªå¯¹è±¡ä¸€æ ·åœ¨å†…å­˜ä¸­ä¿å­˜ï¼Œè€Œåˆ é™¤è¯¥å¯¹è±¡åªéœ€æ‰§è¡Œè§£é™¤å¼•ç”¨çš„æ“ä½œã€‚ä½†æ˜¯ï¼Œè¿™ä¸ªå¯¹è±¡ä»ç„¶åœ¨å†…å­˜ä¸­ï¼Œç”±GCå†³å®šçš„æ—¶é—´æ¥æ‰§è¡Œæ¸…é™¤ã€‚
 	 */
 	public static void cleanPassWord(String password) throws Exception{
 		String fake = password.replaceAll(".", "?");
