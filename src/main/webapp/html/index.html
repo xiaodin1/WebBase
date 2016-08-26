@@ -2,33 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>主页</title>
     <link href="/resources/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
     <link href="/resources/css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="/resources/css/animate.min.css" rel="stylesheet">
     <link href="/resources/css/style.min.css?v=3.2.0" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/select2.min.css">
+    <link rel="stylesheet" href="/resources/css/plugins/chosen/chosen.min.css">
+    <link rel="stylesheet" href="/resources/css/plugins/datepicker/bootstrap-datepicker3.min.css">
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.min.js"></script>
 </head>
 <body class="gray-bg">
 
 <div class="wrapper wrapper-content animated fadeIn" ng-app="ticket" ng-controller="ticketCtrl">
-    <div class="col-md-4 form-group">
-        <label class="form-control label col-md-1">出发地</label>
-        <select class="form-control col-md-3" ng-options="station.name for station in stations" ng-model="station"></select>
+    <label class="label">出发站</label>
+    <select id="from" data-placeholder="Choose a station" class="chosen-select" tabindex="-1" style="width: 350px"
+            ng-options="station.name for station in stations" ng-model="from"></select>
+    <label class="label">终点站</label>
+    <select id="to" data-placeholder="Choose a station" class="chosen-select" tabindex="-1" style="width: 350px"
+            ng-options="station.name for station in stations" ng-model="to"></select>
+    <div class="input-append date" id="datetimepicker"  data-date-format="yyyy-mm-dd">
+        <input size="16" type="text" value="2012-12-02" readonly>
+        <span class="add-on"><i class="icon-th"></i></span>
     </div>
 </div>
 
 
 <script src="/resources/js/jquery-2.1.1.min.js"></script>
-<script src="/resources/js/select2.full.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/plugins/chosen/chosen.jquery.min.js"></script>
+<script src="/resources/js/plugins/datepicker/bootstrap-datepicker.min.js"></script>
 <script>
     var app = angular.module("ticket", ['ngRoute']);
     app.controller("ticketCtrl", function ($scope, $http) {
-        $http.patch('/station').success(function (data) {$scope.stations = data.result;
+        $http.patch('/station').success(function (data) {
+            $scope.stations = data.result;
         });
-    })
+    });
 </script>
 </body>
 </html>
