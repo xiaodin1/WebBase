@@ -89,8 +89,27 @@ public class StationCache {
         logger.info("station data has inserted into the DB!");
     }
 
+
+    public void downloadTicketsFile() throws Exception {
+        URL url = new URL("https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2016-10-01&leftTicketDTO.from_station=SZQ&leftTicketDTO.to_station=YYQ&purpose_codes=ADULT");
+        File file = new File("tickets.txt");
+        FileWriter writer = new FileWriter(file);
+        InputStream ins = (InputStream) url.getContent();
+        BufferedReader br = new BufferedReader(new InputStreamReader(ins));
+        String line = "";
+        StringBuffer content = new StringBuffer();
+        while((line = br.readLine()) != null){
+            writer.write(line);
+            content.append(line);
+        }
+
+        writer.flush();
+        writer.close();
+        logger.info("file has downloaded!");
+
+    }
     public static void main(String[] args) throws Exception {
-        new StationCache().storeDB();
+        new StationCache().downloadTicketsFile();
     }
 
 }

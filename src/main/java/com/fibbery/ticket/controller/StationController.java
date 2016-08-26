@@ -31,4 +31,12 @@ public class StationController extends BaseController {
         return  success(rows);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/tickets",method = RequestMethod.PATCH)
+    public ResultInfo fetchTickets(){
+
+        ResultInfo info = success(null);
+        return info;
+    }
+
 }

@@ -14,18 +14,63 @@
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.min.js"></script>
 </head>
-<body class="gray-bg">
+<body>
+<div class="container" ng-app="ticket" ng-controller="ticketCtrl">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix">
+                <div class="col-md-8 column">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>车次</th>
+                            <th>出发站/到达站</th>
+                            <th>出发时间/到达时间</th>
+                            <th>商务座</th>
+                            <th>特等座</th>
+                            <th>一等座</th>
+                            <th>二等座</th>
+                            <th>高级软卧</th>
+                            <th>软卧</th>
+                            <th>硬卧</th>
+                            <th>软座</th>
+                            <th>硬座</th>
+                            <th>无座</th>
+                            <th>其他</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="ticket in tickets">
+                            <td>
+                                {{ ticket.queryLeftNewDTO.station_train_code}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4 column">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="from">出发站</label>
+                            <select id="from" class="form-control" ng-model="from" ng-options="x.name for x in stations"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="to">目的地</label>
+                            <select id="to" class="form-control" ng-model="to" ng-options="x.name for x in stations"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start">出发时间</label>
+                            <input id='start'  size="16" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
 
-<div class="wrapper wrapper-content animated fadeIn" ng-app="ticket" ng-controller="ticketCtrl">
-    <label class="label">出发站</label>
-    <select id="from" data-placeholder="Choose a station" class="chosen-select" tabindex="-1" style="width: 350px"
-            ng-options="station.name for station in stations" ng-model="from"></select>
-    <label class="label">终点站</label>
-    <select id="to" data-placeholder="Choose a station" class="chosen-select" tabindex="-1" style="width: 350px"
-            ng-options="station.name for station in stations" ng-model="to"></select>
-    <div class="input-append date" id="datetimepicker"  data-date-format="yyyy-mm-dd">
-        <input size="16" type="text" value="2012-12-02" readonly>
-        <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="search()">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -37,9 +82,23 @@
 <script>
     var app = angular.module("ticket", ['ngRoute']);
     app.controller("ticketCtrl", function ($scope, $http) {
-        $http.patch('/station').success(function (data) {
-            $scope.stations = data.result;
-        });
+        $scope.fetchStationList = function () {
+            $http.patch('/station').success(function (data) {
+                $scope.stations = data.result;
+            });
+        };
+        $scope.search = function () {
+            var url = "https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2016-10-01&leftTicketDTO.from_station=SZQ&leftTicketDTO.to_station=YYQ&purpose_codes=ADULT";
+            $http.get(url).success(function () {
+
+            });
+        };
+        $scope.fetchStationList();
+    });
+
+    $(function () {
+        $("#start").datepicker({format: 'yyyy-mm-dd'});
+        $("#start").datepicker('setDate', new Date());
     });
 </script>
 </body>
