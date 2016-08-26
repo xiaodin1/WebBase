@@ -4,5 +4,5 @@
  */
 
 angular.module('framework',[]).directive('chosen',function () {
-
+    return{}
 });
