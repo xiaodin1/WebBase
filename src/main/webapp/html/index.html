@@ -2,41 +2,33 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>主页</title>
     <link href="/resources/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
     <link href="/resources/css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="/resources/css/animate.min.css" rel="stylesheet">
     <link href="/resources/css/style.min.css?v=3.2.0" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/select2.min.css">
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.min.js"></script>
 </head>
 <body class="gray-bg">
 
-<div class="wrapper wrapper-content animated fadeIn" ng-app="ticket" ng-controller="ticketController">
-    <div class="row">
-        <div class="col-sm-2 control-group">
-            <label class="control-label">出发地</label>
-            <select ng-options="station.name for station in stations"></select>
-        </div>
+<div class="wrapper wrapper-content animated fadeIn" ng-app="ticket" ng-controller="ticketCtrl">
+    <div class="col-md-4 form-group">
+        <label class="form-control label col-md-1">出发地</label>
+        <select class="form-control col-md-3" ng-options="station.name for station in stations" ng-model="station"></select>
     </div>
-
 </div>
 
-</body>
 
+<script src="/resources/js/jquery-2.1.1.min.js"></script>
+<script src="/resources/js/select2.full.min.js"></script>
 <script>
     var app = angular.module("ticket", ['ngRoute']);
-    app.controller('ticketController',function($scope,$http){
-        $scope.fetchStationList = function(){
-            $http.patch('/station').success(function (result) {
-                if(result.code == 1){
-                    $scope.stations = result.rows;
-                }
-            });
-        };
-        $scope.fetchStationList();
-    });
+    app.controller("ticketCtrl", function ($scope, $http) {
+        $http.patch('/station').success(function (data) {$scope.stations = data.result;
+        });
+    })
 </script>
+</body>
 </html>

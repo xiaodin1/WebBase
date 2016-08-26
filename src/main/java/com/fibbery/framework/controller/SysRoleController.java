@@ -2,11 +2,12 @@ package com.fibbery.framework.controller;
 
 import com.fibbery.framework.bean.SysRole;
 import com.fibbery.framework.exception.BizException;
-import com.fibbery.framework.mybatis.ui.Page;
 import com.fibbery.framework.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色控制类 RESTful 实例
@@ -21,10 +22,9 @@ public class SysRoleController extends BaseController {
 
     @RequestMapping(method = RequestMethod.PATCH)
     @ResponseBody
-    public Page<SysRole> list() throws BizException {
-        Page<SysRole> page = new Page<SysRole>();
-        roleService.listAll(page);
-        return page;
+    public ResultInfo list() throws BizException {
+        List<SysRole> roles = roleService.listAll();
+        return success(roles);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)

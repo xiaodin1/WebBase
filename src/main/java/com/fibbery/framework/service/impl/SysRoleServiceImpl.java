@@ -51,9 +51,14 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public void listAll(Page<SysRole> page) {
-        List<SysRole> list = roleMapper.listAll(page);
+    public void list(Page<SysRole> page) {
+        List<SysRole> list = roleMapper.list(page);
         page.setRows(list);
+    }
+
+    @Override
+    public List<SysRole> listAll() throws BizException {
+        return roleMapper.listAll();
     }
 
 

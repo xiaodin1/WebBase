@@ -3,6 +3,8 @@ package com.fibbery.framework.service;
 import com.fibbery.framework.exception.BizException;
 import com.fibbery.framework.mybatis.ui.Page;
 
+import java.util.List;
+
 /**
  * 通用service
  * Created by jiangnenghua on 2016/8/16.
@@ -45,10 +47,17 @@ public interface BaseService<T>{
     void deleteAll() throws BizException;
 
     /**
-     * 获取所有记录
+     * 获取记录(根据page设置
      * @return
      */
-    void listAll(Page<T> page) throws BizException;
+    void list(Page<T> page) throws BizException;
+
+    /**
+     * 获取所有记录
+     * @return
+     * @throws BizException
+     */
+    List<T> listAll() throws BizException;
 
     /**
      * 验证记录的新增或者更新是否合法

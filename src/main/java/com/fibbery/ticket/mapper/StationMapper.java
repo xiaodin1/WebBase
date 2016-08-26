@@ -3,6 +3,8 @@ package com.fibbery.ticket.mapper;
 import com.fibbery.framework.mybatis.ui.Page;
 import com.fibbery.ticket.bean.Station;
 
+import java.util.List;
+
 public interface StationMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -18,5 +20,7 @@ public interface StationMapper {
 
     int updateByPrimaryKey(Station record);
 
-    void listAll(Page<Station> page);
+    List<Station> list(Page<Station> page);
+
+    List<Station> listAll();
 }

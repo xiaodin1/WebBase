@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * Created by jiangnenghua on 16/8/25.
@@ -47,8 +49,14 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public void listAll(Page<Station> page) throws BizException {
-        stationMapper.listAll(page);
+    public void list(Page<Station> page) throws BizException {
+        List<Station> list = stationMapper.list(page);
+        page.setRows(list);
+    }
+
+    @Override
+    public List<Station> listAll() throws BizException {
+        return stationMapper.listAll();
     }
 
     @Override

@@ -18,7 +18,9 @@ public interface SysRoleMapper {
 
     int updateByPrimaryKey(SysRole record);
 
-    List<SysRole> listAll(Page<SysRole> page);
+    List<SysRole> list(Page<SysRole> page);
+
+    List<SysRole> listAll();
 
     Long isValid(SysRole record);
 

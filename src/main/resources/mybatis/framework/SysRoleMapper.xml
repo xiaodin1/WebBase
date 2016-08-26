@@ -127,8 +127,13 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-    <!-- 获取所有记录 -->
-    <select id="listAll" parameterType="com.fibbery.framework.mybatis.ui.Page" resultMap="BaseResultMap">
+    <!-- 获取Page条件下的所有记录 -->
+    <select id="list" parameterType="com.fibbery.framework.mybatis.ui.Page" resultMap="BaseResultMap">
+        select * from sys_role
+    </select>
+
+    <!-- 获取所有记录-->
+    <select id="listAll"  resultMap="BaseResultMap">
         select * from sys_role
     </select>
 
