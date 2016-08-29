@@ -70,7 +70,7 @@ public class SysRoleControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-
+        org.springframework.util.Assert.hasText("", "'name' must not be empty");
     }
 
     @Test
